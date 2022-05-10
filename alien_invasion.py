@@ -19,7 +19,7 @@ def run_game():
     aliens = Group()
 
     # Cria a frota de alienigenas
-    gf.create_fleet(ai_settings, screen, aliens)
+    gf.create_fleet(ai_settings, screen, ship, aliens)
 
     # Inicia o laço principal do jogo
     while True:
