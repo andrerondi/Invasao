@@ -62,19 +62,22 @@ def update_bullets(ai_settings, screen, ship, aliens, bullets):
     # Atualiza as posições dos projeteis
     bullets.update()
 
-    # Verifica se algum projétil atingiu os alienígenas, caso afirmativo, livra-se do projétil e do alienígena
+    # Livra-se dos projeteis que desaparecem
+    for bullet in bullets.copy():
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+
+    check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets)
+
+def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
+    """Responde a colisoes entre projeteis e alienigenas."""
+    # Remove qualquer projétil e alienígena que tenham colidido
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
     if len(aliens) == 0:
         # Destrói os projéteis existentes e cria uma nova frota
         bullets.empty()
         create_fleet(ai_settings, screen, ship, aliens)
-
-    # Livra-se dos projeteis que desaparecem
-    for bullet in bullets.copy():
-        if bullet.rect.bottom <= 0:
-            bullets.remove(bullet)
-
 
 def create_fleet(ai_settings, screen, ship, aliens):
     """Cria uma frota completa de alienigenas."""
