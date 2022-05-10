@@ -8,6 +8,9 @@ class Settings:
         self.screen_height = 500
         self.bg_color = (230, 230, 230)
 
+        # Configurações dos alienígenas
+        self.alien_speed_factor = 1
+
         # Configurações da espaçonave
         self.ship_speed_factor = 1.5
 
