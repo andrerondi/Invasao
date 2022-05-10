@@ -4,8 +4,8 @@ class Settings:
     def __init__(self):
         """ Inicializa as configurações do jogo. """
         # Configurações da tela
-        self.screen_width = 720
-        self.screen_height = 500
+        self.screen_width = 1200
+        self.screen_height = 510
         self.bg_color = (230, 230, 230)
 
         # Configurações dos alienígenas
