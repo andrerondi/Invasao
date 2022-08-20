@@ -149,12 +149,19 @@ def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
 
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """Responde ao fato de a espaçonave ter sido atingida por um alienígena."""
-    # Decrementa ships_left
-    stats.ships_left -= 1
 
-    # Esvazia a lista de alienígenas e de projéteis
-    aliens.empty()
-    bullets.empty()
+    if stats.ships_left > 0:
+        # Decrementa ships_left
+        stats.ships_left -= 1
+
+        # Esvazia a lista de alienígenas e de projéteis
+        aliens.empty()
+        bullets.empty()
+
+        # Faz uma pausa
+        sleep(0.5)
+    else:
+        stats.game_active = False
 
     #Cria uma nova frota e centraliza a espaçonave
     create_fleet(ai_settings, screen, ship, aliens)
