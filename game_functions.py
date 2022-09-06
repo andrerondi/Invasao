@@ -48,7 +48,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 
 def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Inicia um novo jogo quando o jogador clicar em Play."""
-    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y) or play_button == pygame.K_p
     if button_clicked and not stats.game_active:
         # Reinicia as configurações do jogo
         ai_settings.initialize_dynamic_settings()
