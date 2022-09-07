@@ -48,7 +48,7 @@ def check_events(ai_settings, screen, stats, play_button, ship, aliens, bullets)
 
 def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Inicia um novo jogo quando o jogador clicar em Play."""
-    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y) or play_button == pygame.K_p
+    button_clicked = play_button.rect.collidepoint(mouse_x, mouse_y)
     if button_clicked and not stats.game_active:
         # Reinicia as configurações do jogo
         ai_settings.initialize_dynamic_settings()
@@ -110,6 +110,7 @@ def check_bullet_alien_collisions(ai_settings, screen, stats, sb, ship, aliens, 
         for aliens in collisions.values():
             stats.score += ai_settings.alien_points * len(aliens)
             sb.prep_score()
+        check_high_score(stats, sb)
 
     if len(aliens) == 0:
         # Destrói projéteis existentes, aumenta a velocidade do jogo e cria nova frota
@@ -207,3 +208,9 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
     # Faz uma pausa
     sleep(0.5)
+
+def check_high_score(stats, sb):
+    """Verifica se há uma nova pontuação máxima."""
+    if stats.score > stats.high_score:
+        stats.high_score = stats.score
+        sb.prep_high_score()
